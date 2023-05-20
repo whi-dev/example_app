@@ -3,7 +3,7 @@
   <form action="{{route('tweet.create')}}" method="post">
     @csrf
     <div class="mt-1">
-      <textarea name="tweet" id="" cols="" rows="3" class="forcus:ring-blue-400 forcus:border-blue-400 mt-1 block w-full 
+      <textarea name="tweet" rows="3" class="forcus:ring-blue-400 forcus:border-blue-400 mt-1 block w-full 
       sm:text-sm border border-gray-300 rounded-md p-2" placeholder="つぶやきを入力">
       </textarea>
     </div>
@@ -13,9 +13,17 @@
     @error('tweet')
       <x-alert.error>{{$message}}</x-alert.error>
     @enderror
-    <div class="flex flex-wrap justify-start">
+    <div class="flex flex-wrap justify-end">
       <x-element.button>つぶやく</x-element.button>
     </div>
   </form>
 </div>
 @endauth
+@guest
+    <div class="flex flex-wrap justify-center">
+      <div class="w-1/2 p-4 flex flex-wrap justify-evenly">
+        <x-element.button-a :href="route('login')">login</x-element.button-a>
+        <x-element.button-a :href="route('register')" theme="secondary">signin</x-element.button-a>
+      </div>
+    </div>
+@endguest
